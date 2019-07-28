@@ -5,7 +5,7 @@ import java.io.*;
 public class DZ1 {
     public static void main (String[] args) {
 
-        File file = new File("sandbox/dict (1).xdxf"); //???? ?????? ???? ?? ????? ??????? ??????? ?? ????????
+        File file = new File("sandbox/dict (1).xdxf");
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(file));
@@ -21,14 +21,14 @@ public class DZ1 {
             String eng = "";
             while (true) {  //опасна
                 assert br != null;
-                st = br.readLine().trim();
-                if (!st.equals("</xdxf>")) {
+                st = br.readLine().trim(); //Читаем строчку, убираем пробелы
+                if (!st.equals("</xdxf>")) { // если не равно </xdxf> (иначе мы уходим в брейк)
 
-                    if(st.contains("<k>")){
-                        int start = st.indexOf("<k>") + 3;
-                        int end = st.indexOf("</k>");
-                        russianLittle = st.substring(start, end);
-                        counter++;
+                    if(st.contains("<k>")){ //если мы натыкаемся на <k>
+                        int start = st.indexOf("<k>") + 3; // натыкаясь на <k> мы читаем начиная с первого символа 3 символа?????????? НЕ ОЧЕНЬ ПОНЯТНО
+                        int end = st.indexOf("</k>"); //  ТОЖЕ ПОКА НЕ ОЧЕНЬ ПОНЯТНО
+                        russianLittle = st.substring(start, end); // ТОЖИ
+                        counter++; // увеличиваем счетчик
                     }
                     if(st.contains("&quot;")){
                         int start = st.indexOf("&quot;") + 6;
@@ -46,7 +46,7 @@ public class DZ1 {
                 else {
                     break;
                 }
-                if(counter == 3){
+                if(counter == 3){ // очень важно, чтобы этот if шел после елс, иначе конструкия нарушается
                     System.out.println(russianLittle + " " + russianBig + " " + eng);
                     counter = 0;
                 }
